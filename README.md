@@ -64,36 +64,36 @@ SALA HOSPITALIZACION
 idDepartamento(FK)
 nombreSala
 
-
-Camas
-(PK)codigoCama
-descripción
-codigoEstado(FK)
-numeroSala
-
-Estados
+ESTADOS
 (PK)codigoEstado
 descripción
 
-
-CamasPacientes
+CAMAS
 (PK)codigoCama
-dniPaciente(FK)
-fechaDesde
-fechaHasta
-
-Tratamientos
-(PK)idHistorialMedico(FK)
-(PK)numeroMatriculaMedico(FK)
-(PK)codigoEnfermero(FK)
-fecha
+descripción
+codigoEstado(FK)
+numeroSala(FK)
 
 ENFERMERO
 (PK)codigoEnfermero
 nombre
 
-EnfermeroSalas
+CAMASPACIENTES
+(PK)codigoCama(FK)
+(PK)dniPaciente(FK)
+fechaDesde
+fechaHasta
+
+ENFERMEROSALAS
 (PK)codigoEnfermero
 numeroSala(FK)
 horaIngreso
 horaEgreso
+
+TRATAMIENTOS
+(PK)idHistorialMedico(FK)
+(PK)numeroMatriculaMedico(FK)
+(PK)codigoEnfermero(FK)
+fecha
+
+

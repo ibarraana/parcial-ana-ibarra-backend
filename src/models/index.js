@@ -5,6 +5,12 @@ import Especialidad from './especialidad.js'
 import Medicos from './medicos.js' 
 import MedicosDepartamentos from './medicosDepartamentos.js'
 import PacientesCitasMedicas from './pacientesCitasMedicas.js'
+import SalaHospitalizacion from './salaHospitalizacion.js'
+import Estados from './estados.js'
+import Camas from './camas.js'
+import Enfermeros from './enfermeros.js'
+import CamasPacientes from './camasPacientes.js'
+import EnfermerosSalas from './enfermerosSalas.js'
 
 HistorialMedico.belongsTo(Paciente, { foreignKey: 'dniPaciente' })
 Paciente.hasMany(HistorialMedico, { foreignKey: 'dniPaciente' })
@@ -27,6 +33,26 @@ Paciente.hasMany(PacientesCitasMedicas, { foreignKey: 'dniPaciente' })
 PacientesCitasMedicas.belongsTo(Departamentos, { foreignKey: 'idDepartamento' })
 Departamentos.hasMany(PacientesCitasMedicas, { foreignKey: 'idDepartamento' })
 
+SalaHospitalizacion.belongsTo(Departamentos, { foreignKey: 'idDepartamento' })
+Departamentos.hasMany(SalaHospitalizacion, { foreignKey: 'idDepartamento' })
+
+Camas.belongsTo(Estados, { foreignKey: 'codigoEstado' })
+Estados.hasMany(Camas, { foreignKey: 'codigoEstado' })
+
+CamasPacientes.belongsTo(Camas, { foreignKey: 'codigoCama' })
+Camas.hasMany(CamasPacientes, { foreignKey: 'codigoCama' })
+
+CamasPacientes.belongsTo(Paciente, { foreignKey: 'dniPaciente' })
+Paciente.hasMany(CamasPacientes, { foreignKey: 'dniPaciente' })
+
+Camas.belongsTo(SalaHospitalizacion, { foreignKey: 'numeroSala' })
+SalaHospitalizacion.hasMany(Camas, { foreignKey: 'numeroSala' })
+
+EnfermerosSalas.belongsTo(SalaHospitalizacion, { foreignKey: 'numeroSala' })
+SalaHospitalizacion.hasMany(EnfermerosSalas, { foreignKey: 'numeroSala' })
+
+EnfermerosSalas.belongsTo(Enfermeros, { foreignKey: 'codigoEnfermero' })
+Enfermeros.hasMany(EnfermerosSalas, { foreignKey: 'codigoEnfermero' })
 
 export {
     Paciente,
@@ -35,5 +61,11 @@ export {
     Especialidad,
     Medicos,
     MedicosDepartamentos,
-    PacientesCitasMedicas
+    PacientesCitasMedicas,
+    SalaHospitalizacion,
+    Estados,
+    Camas,
+    Enfermeros,
+    CamasPacientes,
+    EnfermerosSalas
 }
