@@ -1,8 +1,10 @@
-/*import { PacienteRuteo } from './pacientesRuteo.js'
-
+import { Router } from "express"
+import { PacientesRuteo } from './pacientesRuteo.js'
 
 const ruteo = Router()
 
-ruteo.use('/paciente', PacienteRuteo)
+// Profe para esto por motivos de tiempo solo hago GET para traer los datos nomas
 
-export default ruteo*/
+ruteo.use('/paciente', PacientesRuteo)
+
+export default ruteo

@@ -1,4 +1,4 @@
-import Paciente from './pacientes.js' 
+import Pacientes from './pacientes.js' 
 import HistorialMedico from './historialMedico.js'
 import Departamentos from './departamentos.js'
 import Especialidad from './especialidad.js'
@@ -11,9 +11,10 @@ import Camas from './camas.js'
 import Enfermeros from './enfermeros.js'
 import CamasPacientes from './camasPacientes.js'
 import EnfermerosSalas from './enfermerosSalas.js'
+import Tratamientos from './tratamientos.js'
 
-HistorialMedico.belongsTo(Paciente, { foreignKey: 'dniPaciente' })
-Paciente.hasMany(HistorialMedico, { foreignKey: 'dniPaciente' })
+HistorialMedico.belongsTo(Pacientes, { foreignKey: 'dniPaciente' })
+Pacientes.hasMany(HistorialMedico, { foreignKey: 'dniPaciente' })
 
 Medicos.belongsTo(Especialidad, { foreignKey: 'codigoEspecialidad' })
 Especialidad.hasMany(Medicos, { foreignKey: 'codigoEspecialidad' })
@@ -27,8 +28,8 @@ Departamentos.hasMany(Medicos, { foreignKey: 'idDepartamento' })
 PacientesCitasMedicas.belongsTo(Medicos, { foreignKey: 'numeroMatriculaMedico' })
 Medicos.hasMany(PacientesCitasMedicas, { foreignKey: 'numeroMatriculaMedico' })
 
-PacientesCitasMedicas.belongsTo(Paciente, { foreignKey: 'dniPaciente' })
-Paciente.hasMany(PacientesCitasMedicas, { foreignKey: 'dniPaciente' })
+PacientesCitasMedicas.belongsTo(Pacientes, { foreignKey: 'dniPaciente' })
+Pacientes.hasMany(PacientesCitasMedicas, { foreignKey: 'dniPaciente' })
 
 PacientesCitasMedicas.belongsTo(Departamentos, { foreignKey: 'idDepartamento' })
 Departamentos.hasMany(PacientesCitasMedicas, { foreignKey: 'idDepartamento' })
@@ -42,8 +43,8 @@ Estados.hasMany(Camas, { foreignKey: 'codigoEstado' })
 CamasPacientes.belongsTo(Camas, { foreignKey: 'codigoCama' })
 Camas.hasMany(CamasPacientes, { foreignKey: 'codigoCama' })
 
-CamasPacientes.belongsTo(Paciente, { foreignKey: 'dniPaciente' })
-Paciente.hasMany(CamasPacientes, { foreignKey: 'dniPaciente' })
+CamasPacientes.belongsTo(Pacientes, { foreignKey: 'dniPaciente' })
+Pacientes.hasMany(CamasPacientes, { foreignKey: 'dniPaciente' })
 
 Camas.belongsTo(SalaHospitalizacion, { foreignKey: 'numeroSala' })
 SalaHospitalizacion.hasMany(Camas, { foreignKey: 'numeroSala' })
@@ -54,8 +55,17 @@ SalaHospitalizacion.hasMany(EnfermerosSalas, { foreignKey: 'numeroSala' })
 EnfermerosSalas.belongsTo(Enfermeros, { foreignKey: 'codigoEnfermero' })
 Enfermeros.hasMany(EnfermerosSalas, { foreignKey: 'codigoEnfermero' })
 
+Tratamientos.belongsTo(HistorialMedico, { foreignKey: 'idHistorialMedico' })
+HistorialMedico.hasMany(Tratamientos, { foreignKey: 'idHistorialMedico' })
+
+Tratamientos.belongsTo(Medicos, { foreignKey: 'numeroMatriculaMedico' })
+Medicos.hasMany(Tratamientos, { foreignKey: 'numeroMatriculaMedico' })
+
+Tratamientos.belongsTo(Enfermeros, { foreignKey: 'codigoEnfermero' })
+Enfermeros.hasMany(Tratamientos, { foreignKey: 'codigoEnfermero' })
+
 export {
-    Paciente,
+    Pacientes,
     HistorialMedico,
     Departamentos,
     Especialidad,
@@ -67,5 +77,6 @@ export {
     Camas,
     Enfermeros,
     CamasPacientes,
-    EnfermerosSalas
+    EnfermerosSalas,
+    Tratamientos
 }
