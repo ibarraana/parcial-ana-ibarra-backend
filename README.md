@@ -25,29 +25,32 @@ teléfono
 datosContactoEmergencia
 
 
-HistorialMedico
+HISTORIALMEDICO
 (PK)idHistorialMedico
 descripción
 dniPaciente(FK)
 
-
-Departamentos
+DAPARTAMENTOS
 (PK)idDepartamento
 nombreDepartamento
 jefeDepartamentoId(FK)
 
-Medicos
+ESPECIALIDAD
+(PK)codigoEspecialidad
+descripcion
+
+MEDICOS
 (PK)numeroMatriculaMedico
 nombre
-especialidadPrincipal(FK)
+codigoEspecialidad(FK)
 telefonoConctacto
 
-MedicosDepartamentos
+MEDICOSDEPARTAMENTOS
 (PK)numeroMatriculaMedico(FK)
 (PK)idDepartamento(FK)
 
 
-PacientesCitasMedicas
+PACIENTESCITASMEDICAS
 (PK)idCitaMedica
 fechaHora
 dniPaciente(FK)
@@ -56,7 +59,7 @@ idDepartamento(FK)
 motivoConsulta
 diagnosticoResumen
 
-SalaHospitalizacion
+SALA HOSPITALIZACION
 (PK)numeroSala
 idDepartamento(FK)
 nombreSala
